@@ -1,0 +1,79 @@
+@(persons: List[Person], personForm: Form[Person])
+
+@main("Lista de Personas") {
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="nav nav-tabs">
+					<li><a href="/">Personas</a></li>
+					<li><a href="#">Menu 1</a></li>
+					<li><a href="#">Menu 2</a></li>
+					<li><a href="#">Menu 3</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="text-muted">Lista de Personas</h1>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#myModal">Agregar Persona</button>
+				<!-- <a href="@routes.Application.create()" class="btn btn-success pull-right">Agregar Persona</a> -->
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="responsive">
+					<table border="0" class="table table-hover table-bordered table-condensed table-responsive">
+						<tr class="info">
+							<th class="col-sm-1 text-center" style="width: 2%"></th>
+							<th class="col-sm-4 text-center">Nombre</th>
+							<th class="col-sm-4 text-center">Descripción</th>
+							<th class="col-sm-2 text-center">Cumpleaños</th>
+							<th class="col-sm-1 text-center">Edad</th>
+						</tr>
+						@persons.map { person =>
+						<tr>
+							<td><input type="radio" name="pname" value="@person.getName()"></td>
+							<td>@person.getName()</td>
+							<td>@person.getDescription()</td>
+							<td class="text-center">@person.getBirthday().format("dd/MM/yyyy")</td>
+							<td class="text-center">@pepurson.getAge()</td>
+						</tr>
+						}
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Nueva Persona</h4>
+					</div>
+					<div class="modal-body">
+						@create(personForm)
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+}
