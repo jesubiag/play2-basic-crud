@@ -44,11 +44,15 @@
 						</tr>
 						@persons.map { person =>
 						<tr>
-							<td><input type="radio" name="pname" value="@person.getName()"></td>
+							<td><input type="radio" name="index" value="@persons.indexOf(person)"></td>
 							<td>@person.getName()</td>
 							<td>@person.getDescription()</td>
-							<td class="text-center">@person.getBirthday().format("dd/MM/yyyy")</td>
-							<td class="text-center">@pepurson.getAge()</td>
+							<td class="text-center">
+								@if(person.getBirthday() != null) {
+									@person.getBirthday().format("dd/MM/yyyy")
+								}
+							</td>
+							<td class="text-center">@person.getAge()</td>
 						</tr>
 						}
 					</table>
@@ -66,14 +70,15 @@
 						<h4 class="modal-title">Nueva Persona</h4>
 					</div>
 					<div class="modal-body">
-						@create(personForm)
+						@create_content(personForm)
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> -->
 					</div>
 				</div>
 			</div>
 		</div>
+
 
 	</div>
 }
