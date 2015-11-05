@@ -1,0 +1,14 @@
+@(carForm: Form[Car])
+@import play.i18n._
+
+@main(Messages.get("cars.create")) {
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				@create_content(carForm)
+			</div>
+		</div>
+	</div>
+
+}

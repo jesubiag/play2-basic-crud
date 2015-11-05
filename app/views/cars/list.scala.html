@@ -1,0 +1,50 @@
+@(carList: List[Car], carForm: Form[Car])
+@import play.i18n._
+
+@main(Messages.get("cars.list")) {
+
+@parts.nav_tabs()
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-12">
+			<h1 class="text-muted">@Messages.get("cars.list")</h1>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#create-car-modal">@Messages.get("cars.add")</button>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="responsive">
+				<table border="0" class="table table-hover table-bordered table-condensed table-responsive" id="table-persons">
+					<tr class="info">
+						<th class="col-sm-4 text-center" id="th-name">@Messages.get("cars.name")</th>
+						<th class="col-sm-4 text-center" id="th-description">@Messages.get("cars.description")</th>
+						<th class="col-sm-2 text-center" id="th-kilometers">@Messages.get("cars.kilometers")</th>
+						<th class="col-sm-1 text-center" id="th-color">@Messages.get("cars.color")</th>
+						<th class="col-sm-1 text-center" id="th-edit" style="width: 2%"></th>
+					</tr>
+					@carList.map { car =>
+					<tr>
+						<td>@car.getName()</td>
+						<td>@car.getDescription()</td>
+						<td>@car.getKilometers()</td>
+						<td>@car.getColor()</td>
+						<td><a href="#" onclick="getCar(@car.getId())">Editar</a></td>
+					</tr>
+					}
+				</table>
+			</div>
+		</div>
+	</div>
+
+	@cars.modal(Messages.get("cars.create"),"create-car-modal",cars.create_content(carForm))
+	@cars.modal(Messages.get("cars.edit"),"edit-car-modal",cars.edit_form(carForm,null))
+
+}

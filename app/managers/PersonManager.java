@@ -1,22 +1,21 @@
 package managers;
 
-import com.avaje.ebean.Ebean;
 import models.Person;
-
-import java.util.List;
 
 /**
  * Created by jesu on 16/09/2015.
  */
-public class PersonManager {
+public class PersonManager extends DataManager<Person> {
 
-    private static final Class<Person> ENTITY_TYPE = Person.class;
+    private static PersonManager instance;
 
-    public static List<Person> findAll() {
-        return Ebean.find(ENTITY_TYPE).findList();
+    private PersonManager() {
+        super(Person.class);
     }
 
-	public static void save(Person person) {
-		Ebean.save(person);
-	}
+    public static PersonManager instance() {
+        if ( instance == null ) instance = new PersonManager();
+        return instance;
+    }
+
 }

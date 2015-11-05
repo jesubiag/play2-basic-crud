@@ -2,13 +2,32 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
+# Home Page
 GET     /                           controllers.Application.list()
 
+# Persons
 GET     /persons                    controllers.Application.list()
 
 GET     /persons/new                controllers.Application.create()
+GET     /persons/:id                controllers.Application.edit(id: Long)
 POST    /persons                    controllers.Application.save()
+POST    /persons/:id                controllers.Application.update(id: Long)
+POST	/persons/:id/delete			controllers.Application.delete(id: Long)
+
+GET     /persons/ajax-get/:id        controllers.Application.get(id: Long)
+
+GET     /personsJsRoutes           controllers.Application.javascriptRoutes
+
+# Cars
+GET		/cars						controllers.CarsController.list()
+GET     /cars/new                   controllers.CarsController.create()
+POST    /cars                       controllers.CarsController.save()
+GET     /cars/:id               	controllers.CarsController.edit(id: Long)
+POST    /cars/:id               	controllers.CarsController.update(id: Long)
+POST	/cars/:id/delete			controllers.CarsController.delete(id: Long)
+
+GET     /cars/ajax-get/:id  		controllers.CarsController.get(id: Long)
+GET     /carsJsRoutes        		controllers.CarsController.javascriptRoutes
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

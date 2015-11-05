@@ -1,0 +1,28 @@
+@(carForm: Form[Car])
+
+@import helper._
+@import play.i18n._
+
+<h1>@Messages.get("cars.add")</h1>
+
+<div class="form-group">
+	@form(action = routes.CarsController.save()) {
+
+		@input(carForm("name"), '_label -> Messages.get("cars.name"), '_help -> "") { (id1, name1, value1, args1) =>
+		<input type="text" name="@name1" id="@id1" class="form-control">
+		}
+		@input(carForm("description"),'_label -> Messages.get("cars.description")) { (id2, name2, value2, args2) =>
+		<textarea name="@name2" id="@id2" class="form-control"></textarea>
+		}
+		@input(carForm("kilometers"), '_label -> Messages.get("cars.kilometers"), '_help -> "") { (id3, name3, value3, args3) =>
+		<input type="number" name="@name3" id="@id3" class="form-control">
+		}
+		@input(carForm("color"), '_label -> Messages.get("cars.color"), '_help -> "") { (id4, name4, value4, args4) =>
+		<input type="text" name="@name4" id="@id4" class="form-control">
+		}
+
+		<div class="actions">
+			<input type="submit" value="@Messages.get("cars.create")" class="btn btn-primary pull-right">
+		</div>
+	}
+</div>

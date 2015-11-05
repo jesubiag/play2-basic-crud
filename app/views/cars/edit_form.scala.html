@@ -1,0 +1,32 @@
+@(carForm: Form[Car], id: Long)
+@import helper._
+@import play.i18n._
+
+<h1>@Messages.get("cars.edit")</h1>
+
+<form method="POST" id="delete-car-form" class="form-group">
+	<input type="submit" value="@Messages.get("cars.delete")" class="btn btn-danger pull-right">
+</form>
+
+<form method="POST" id="update-car-form" class="form-group">
+
+	@input(carForm("name"), '_label -> Messages.get("cars.name"), '_help -> "") { (id1, name1, value1, args1) =>
+	<input type="text" name="@name1" id="@id1-edit" value="@value1" @toHtmlArgs(args1) class="form-control">
+	}
+	@input(carForm("description"),'_label -> Messages.get("cars.description"), '_help -> "") { (id2, name2, value2, args2) =>
+	<textarea name="@name2" id="@id2-edit" class="form-control">@value2</textarea>
+	}
+	@input(carForm("kilometers"), '_label -> Messages.get("cars.kilometers"), '_help -> "") { (id3, name3, value3, args3) =>
+	<input type="number" name="@name3" id="@id3-edit" value="@value3" @toHtmlArgs(args3) class="form-control">
+	}
+	@input(carForm("color"), '_label -> Messages.get("cars.color"), '_help -> "") { (id4, name4, value4, args4) =>
+	<input type="text" name="@name4" id="@id4-edit" value="@value4" @toHtmlArgs(args4) class="form-control">
+	}
+
+	<div class="actions">
+		<input type="submit" value="@Messages.get("app.save")" class="btn btn-primary pull-right">
+		<a href="@routes.CarsController.list()" class="btn btn-info pull-right">@Messages.get("app.cancel")</a>
+	</div>
+
+</form>
+

@@ -1,18 +1,19 @@
 package models;
 
 import com.avaje.ebean.Model;
-import play.data.format.Formats;
 import play.data.validation.Constraints;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.Date;
 
-@Entity
-public class Person extends Model {
+/**
+ * Created by jesu on 23/10/2015.
+ */
+ @Entity
+public class Car extends Model {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	private Long id;
 
@@ -21,23 +22,22 @@ public class Person extends Model {
 
 	private String description;
 
-	@Constraints.Min(0) @Constraints.Max(120)
-	private Integer age;
+	@Constraints.Min(0)
+	private Float kilometers;
 
-	@Formats.DateTime(pattern="dd/MM/yyyy")
-	private Date birthday;
+	private String color;
 
-	public Person() {}
+	public Car() {}
 
-	public Person(Long id, String name, String description, Integer age, Date birthday) {
+	public Car(Long id, String name, String description, Float kilometers, String color) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.age = age;
-		this.birthday = birthday;
+		this.kilometers = kilometers;
+		this.color = color;
 	}
 
-	public static Finder<Long,Person> find = new Finder<Long,Person>(Long.class, Person.class);
+	public static Finder<Long,Car> find = new Finder<Long,Car>(Long.class, Car.class);
 
 	public Long getId() {
 		return id;
@@ -63,20 +63,20 @@ public class Person extends Model {
 		this.description = description;
 	}
 
-	public Integer getAge() {
-		return age;
+	public Float getKilometers() {
+		return kilometers;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public void setKilometers(Float kilometers) {
+		this.kilometers = kilometers;
 	}
 
-	public Date getBirthday() {
-		return birthday;
+	public String getColor() {
+		return color;
 	}
 
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 }

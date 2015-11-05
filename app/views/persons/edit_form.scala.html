@@ -1,0 +1,41 @@
+@(personForm: Form[Person], id: Long)
+@import helper._
+
+@main("Crear Persona") {
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Agregar una persona</h1>
+
+			@form(action = routes.Application.delete(id), 'id -> "delete-person-form") {
+			<input type="submit" value="Borrar Persona" class="btn btn-danger pull-right">
+			}
+
+			<div class="form-group">
+				@form(action = routes.Application.update(id)) {
+
+				@input(personForm("name"), '_label -> "Nombre", '_help -> "") { (id1, name1, value1, args1) =>
+				<input type="text" name="@name1" id="@id1" value="@value1" @toHtmlArgs(args1) class="form-control">
+				}
+				@input(personForm("description"),'_label -> "Descripción", '_help -> "") { (id2, name2, value2, args2) =>
+				<textarea name="@name2" id="@id2" class="form-control">@value2</textarea>
+				}
+				@input(personForm("age"), '_label -> "Edad", '_help -> "") { (id3, name3, value3, args3) =>
+				<input type="number" name="@name3" id="@id3" value="@value3" @toHtmlArgs(args3) class="form-control">
+				}
+				@input(personForm("birthday"), '_label -> "Fecha de Cumpleaños", '_help -> "") { (id4, name4, value4, args4) =>
+				<input type="text" name="@name4" id="@id4" value="@value4" @toHtmlArgs(args4) class="form-control">
+				}
+
+				<div class="actions">
+					<input type="submit" value="Guardar" class="btn btn-primary pull-right">
+					<a href="@routes.Application.list()" class="btn btn-info pull-right">Cancelar</a>
+				</div>
+				}
+			</div>
+		</div>
+	</div>
+</div>
+
+}

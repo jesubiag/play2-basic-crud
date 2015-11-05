@@ -1,0 +1,16 @@
+@(title: String, otherResources: Html)
+
+<title>@title</title>
+
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/material.css")">
+<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/roboto.css")">
+<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/ripples.css")">
+
+<link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+
+<script type="text/javascript" src='@routes.CarsController.javascriptRoutes()'></script>
+
+@otherResources

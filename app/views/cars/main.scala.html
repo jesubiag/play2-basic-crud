@@ -1,0 +1,31 @@
+@(title: String)(content: Html)
+@import play.i18n._
+
+<!DOCTYPE html>
+
+<html lang="es-AR">
+
+<head>
+    @header(title,null)
+</head>
+
+<body>
+    @content
+
+    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <script src="@routes.Assets.versioned("javascripts/ripples.min.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.versioned("javascripts/material.min.js")" type="text/javascript"></script>
+    <script src="@routes.Assets.versioned("javascripts/cars.js")" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function() {
+            // This command is used to initialize some elements and make them work properly
+            $.material.init();
+        });
+    </script>
+
+</body>
+
+</html>
